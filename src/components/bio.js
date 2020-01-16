@@ -1,9 +1,11 @@
 import React from 'react';
 import { PageHeader, Typography, Button } from 'antd';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Bio = ({
-  bioTitle
+  bioTitle,
+  showModal
 }) => {
   return (
     <>
@@ -17,11 +19,16 @@ const Bio = ({
         <div>
           <LinkButton><a href="https://github.com/devgaram" target="_blank">Github</a></LinkButton>
           <LinkButton><a href="mailto:joingaram@gmail.com" target="_blank">Gmail</a></LinkButton>
-          <LinkButton>Login</LinkButton>
-        </div>        
+          <LinkButton onClick={showModal}>Login</LinkButton>
+        </div>               
       </PageHeader>   
     </>
   );
+}
+
+Bio.propTypes = {
+  bioTitle: PropTypes.string,
+  showModal: PropTypes.func
 }
 
 const LinkButton = styled(Button)`
