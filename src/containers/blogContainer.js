@@ -6,7 +6,7 @@ import { requestPosts } from 'store/modules/blog'
 const BlogContainer = () => {
   const dispatch = useDispatch();
   const posts = useSelector(state => {
-    return state.blog.get('posts')
+    return state.blog.get('posts').sortBy((item) => item.date).reverse()
   }, shallowEqual);
 
   useEffect(() => {

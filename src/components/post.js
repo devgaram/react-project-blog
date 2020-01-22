@@ -36,6 +36,7 @@ const Post = ({
   const date = post && post.date.substr(0, 10);
   const tags = post && post.tags;
   const categories = post && post.categories;
+  const category = post && post.category;
   return(
     <>      
       <Title level={3}>{title}</Title> 
@@ -45,6 +46,8 @@ const Post = ({
       {categories && categories.map(c => {
         return <Tag key={c}>{c}</Tag>
       })}
+      {!categories && <Tag>{category}</Tag>}
+      
       {tags && tags.map(t => {
         return <Tag key={t} color="purple"># {t}</Tag>
       })}
