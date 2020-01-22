@@ -95,7 +95,7 @@ export const fetchPostsSuccess = createAction(FETCH_POSTS_SUCCESS);
 export default handleActions(
   {
     [REQUEST_POSTS]: (state, action) => {
-      return state.set('isFetching', action.payload);
+      return state.set('isFetching', true);
     },
     [RECEIVE_POSTS]: (state, action) => {
       return state.set('posts', List(action.payload));

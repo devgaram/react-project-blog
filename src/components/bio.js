@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 
 const Bio = ({
   bioTitle,
-  showModal
+  showModal,
+  logged
 }) => {
   return (
     <>
@@ -19,7 +20,7 @@ const Bio = ({
         <div>
           <LinkButton><a href="https://github.com/devgaram" target="_blank">Github</a></LinkButton>
           <LinkButton><a href="mailto:joingaram@gmail.com" target="_blank">Gmail</a></LinkButton>
-          <LinkButton onClick={showModal}>Login</LinkButton>
+          <LinkButton type={logged ? `primary` : `default`} onClick={showModal}>{logged? `Logout` : `Login`}</LinkButton>
         </div>               
       </PageHeader>   
     </>
@@ -28,7 +29,8 @@ const Bio = ({
 
 Bio.propTypes = {
   bioTitle: PropTypes.string,
-  showModal: PropTypes.func
+  showModal: PropTypes.func,
+  logged: PropTypes.bool
 }
 
 const LinkButton = styled(Button)`

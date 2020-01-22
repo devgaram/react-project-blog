@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card, Icon } from 'antd';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
@@ -15,8 +15,9 @@ const Blog = ({
           <Link to={`post/${p.id}`} key={index}>
             <CardItem hoverable>
               <CardTitle>{p.title}</CardTitle>
-              <p>{p.date}</p>
-              <p>{p.body && p.body.replace(/(<([^>]+)>)|(\&lt;)|(\&gt;)/ig,'').substr(0, 150)}</p>
+              <Icon className='text-grey is-0-8' type='calendar'/>
+              <span className='text-grey left-space-sm'>{p.date && p.date.substr(0, 10)}</span>
+              <p className='top-space-sm'>{p.body && p.body.replace(/(<([^>]+)>)|(\&lt;)|(\&gt;)/ig,'').substr(0, 150)}</p>
             </CardItem>
           </Link>
           )

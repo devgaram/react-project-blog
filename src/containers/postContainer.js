@@ -13,7 +13,6 @@ const PostContainer = () => {
     return state.blog.get('posts').filter(p => p.id === id)
   }, shallowEqual)
 
-
   useEffect(() => {
     dispatch(requestPosts())
   }, []);

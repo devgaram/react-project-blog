@@ -1,7 +1,5 @@
 import { take, call, takeEvery, put, fork } from 'redux-saga/effects';
-import {
-  getBlogPosts
- } from 'lib/web-api';
+import { Blog } from 'lib/api';
 import {
   REQUEST_POSTS,
   RECEIVE_POSTS,
@@ -11,7 +9,7 @@ import {
 export function* requestPosts() {
   while (true) {
     const action = yield take(REQUEST_POSTS);
-    const payload = yield call(getBlogPosts, action.payload);
+    const payload = yield call(Blog.getBlogPosts, action.payload);
     yield put(receivePosts(payload));
   }
 }

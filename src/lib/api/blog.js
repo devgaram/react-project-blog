@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getBlogPosts = (blog) => {
+const getBlogPosts = (blog) => {
   const uri = '/dist/blog.json';
   return axios
     .get(uri)
@@ -9,3 +9,7 @@ export const getBlogPosts = (blog) => {
       console.log(error);
     })
 }
+const Blog = {
+  getBlogPosts
+}
+export default Blog;

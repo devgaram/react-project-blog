@@ -6,6 +6,7 @@ $is-2-5: 2.5rem;
 $is-2: 2rem;
 $is-1-5: 1.5rem;
 $is-1-25: 1.25rem;
+$is-0-8: 0.80rem;
 $text-bold: 600;
 $space-1: 1rem;
 $block-spacing-big: 2rem !default;
@@ -23,6 +24,16 @@ $block-spacing-big: 2rem !default;
 }
 .is-2 {
   font-size: $is-2-5;
+}
+.is-0-8 {
+  font-size: $is-0-8;
+}
+
+.left-space-sm {
+  margin-left: 0.5rem;
+}
+.top-space-sm {
+  margin-top: 0.5rem;
 }
 
 .title {

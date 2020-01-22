@@ -6,26 +6,28 @@ const Login = ({
   visible,
   handleLogin,
   onCancel,
-  form,
   userId,
   password,
+  isFetching,
   handleChangeUserId,
-  handleChangePassword
+  handleChangePassword,
+  getFieldDecorator,
+  useridError,
+  passwordError
 }) => {
-  const { isFieldTouched, getFieldError, getFieldDecorator } = form;
-  const useridError = isFieldTouched('userid') && getFieldError('userid');
-  const passwordError = isFieldTouched('password') && getFieldError('password');
-  return (
-    
+
+  const disabled = userId === '' || password === '' ? 'disabled' : '';
+  
+  return (    
     <>
       <Modal
         title="Sign in"
         visible={visible}
         onOk={handleLogin}
-        onCancel={onCancel}
+        onCancel={onCancel}        
         footer={[
           <Button key="back" onClick={onCancel}>Close</Button>,
-          <Button key="submit" type="primary" onClick={handleLogin}>Log in</Button>
+          <Button loading={isFetching} key="submit" type="primary" onClick={handleLogin} disabled={disabled}>Log in</Button>
         ]}
       >
         <Form layout="vertical">
@@ -72,8 +74,12 @@ Login.propTypes = {
   onCancel: PropTypes.func,
   userId: PropTypes.string,
   password: PropTypes.string,
+  isFetching: PropTypes.bool,
   handleChangeUserId: PropTypes.func,
-  handleChangePassword: PropTypes.func
+  handleChangePassword: PropTypes.func,
+  getFieldDecorator: PropTypes.func,
+  useridError: PropTypes.array,
+  passwordError: PropTypes.array
 }
 
-export default Form.create({ name: 'form_login'})(Login);
+export default Login;
