@@ -83,3 +83,7 @@ $block-spacing-big: 2rem !default;
     color: $text-grey;
   }
 }
+
+.ant-select-dropdown-menu li {
+  font-size: 0.8rem;
+}

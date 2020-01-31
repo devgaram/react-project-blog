@@ -34,7 +34,7 @@ Bio.propTypes = {
 }
 
 const LinkButton = styled(Button)`
-  margin-right: 0.25rem;
+  margin: 0.25rem 0.25rem 0 0;
   height: 38px;
 `;
 export default Bio;

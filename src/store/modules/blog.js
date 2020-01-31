@@ -5,6 +5,8 @@ import { Map, List } from 'immutable';
 const defaultState = Map({
   isFetching: false,
   didInvalidate: false,
+  pagination: 10,
+  postCount: 0,
   posts: List([
     Map({
       id: '',
@@ -31,6 +33,7 @@ const defaultState = Map({
 // 동기 액션
 export const REQUEST_POSTS = 'blog/REQUEST_POSTS';
 export const RECEIVE_POSTS = 'blog/RECEIVE_POSTS';
+export const NEXT_PAGE = 'blog/NEXT_PAGE';
 
 // 비동기 액션
 export const FETCH_POSTS_REQUEST = 'blog/FETCH_POSTS_REQUEST';
@@ -61,6 +64,7 @@ export const FETCH_POSTS_SUCCESS = 'blog/FETCH_POSTS_SUCCESS';
  */
 export const requestPosts = createAction(REQUEST_POSTS);
 export const receivePosts = createAction(RECEIVE_POSTS);
+export const nextPage = createAction(NEXT_PAGE);
 // 비동기 액션 생성자
 /**
  * 1) fetchPostsRequest
@@ -98,7 +102,12 @@ export default handleActions(
       return state.set('isFetching', true);
     },
     [RECEIVE_POSTS]: (state, action) => {
-      return state.set('posts', List(action.payload));
+      const posts = List(action.payload);
+      const count = posts.count();
+      return state.set('posts', List(action.payload)).set('postCount', count);
+    },
+    [NEXT_PAGE]: (state, action) => {
+      return state.set('pagination', state.get('pagination') + 10);
     }
   },
   defaultState

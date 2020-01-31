@@ -48,9 +48,10 @@ const Post = ({
       })}
       {!categories && <Tag>{category}</Tag>}
       
-      {tags && tags.map(t => {
+      {tags && tags instanceof Array && tags.map(t => {
         return <Tag key={t} color="purple"># {t}</Tag>
       })}
+      { typeof tags == 'string' && <Tag color="purple"># {tags}</Tag>}
      <Divider/>
       <div className="blog-content" dangerouslySetInnerHTML={createMarkUp()} />
       
