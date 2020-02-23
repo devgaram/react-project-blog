@@ -36,6 +36,10 @@ $block-spacing-big: 2rem !default;
   margin-top: 0.5rem;
 }
 
+.top-space-mid {
+  margin-top: 3rem;
+}
+
 .title {
   line-height: 1.125;
   font-weight: $text-bold;
@@ -81,6 +85,9 @@ $block-spacing-big: 2rem !default;
   }
   .clr-grey {
     color: $text-grey;
+  }
+  img {
+    width: 100%;
   }
 }
 

@@ -172,3 +172,19 @@ Horse *h2= malloc(sizeof(Horse));
 
 memcpy(h2, &h1, sizeof(Horse));    // 구조체 변수에서 동적 메모리로 복사
 ```
+
+# 자료형
+정수 자료형 int는 4바이트 정보를 기록할 수 있는 자료형으로, signed int(부호가 있는 정수)를 기준으로 기록할 수 있는 양의 정수 범위는 0 ~ 2,147,483,647 (16진수로 7FFFFFFF)이다. 
+
+## int 범위를 벗어나는 경우 자료형은 무엇을 쓸까?
+8바이트 크기를 가지는 정수 자료형 long long을 쓰는 게 좋다. signed long long을 기준으로 하면 최대 계산할 수 있는 양의 정수 범위는  0 ~ 9,223,372,036,854,775,807(16진수로 7FFFFFFFFFFFFFFF)다.
+
+long long으로도 불가능하다면 BigInteger를 사용하면 된다.
+```cpp
+typedef long long ll;
+ll large, small;
+
+```
+
+# 순열관련 함수
+prev_permutation

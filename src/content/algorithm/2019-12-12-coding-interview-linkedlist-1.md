@@ -1,6 +1,6 @@
 ---
 layout: post-content
-title: (코딩인터뷰) 연결리스트 면접 문제
+title: 알고리즘 개념 잡자 1탄 - 연결리스트
 date: 2019-12-12
 categories: [algorithm]
 ---

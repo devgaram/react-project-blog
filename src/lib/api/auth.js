@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const login = (userid, password) => {
-  const uri = 'http://localhost:4000/api/auth/login';
+  //const uri = `${process.env.API_URL}/auth/login`;
+  console.log(process.env.API_URL);
+  const uri = `http://192.168.99.100:4000/api/auth/login`;
   return axios
     .post(uri, {userid, password})
     .then(response => {
@@ -41,14 +43,14 @@ const postToken = ({uri, token}) => {
 
 const loginCheck = token => {
   return postToken({
-    uri: 'http://localhost:4000/api/auth/check',
+    uri: `http://192.168.99.100:4000/api/auth/check`,
     token: token
   });
 }
 
 const logout = token => {
   return postToken({
-    uri: 'http://localhost:4000/api/auth/logout',
+    uri: `http://192.168.99.100:4000/api/auth/logout`,
     token: token
   });
 }

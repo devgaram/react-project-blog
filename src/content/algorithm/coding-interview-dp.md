@@ -1,5 +1,5 @@
 ---
-title: 코딩인터뷰 완전분석 - 재귀와 동적 프로그래밍
+title: 알고리즘 개념 잡자 5탄 - 재귀와 동적 프로그래밍
 date: 2020-01-09
 tags: [coding-interview, data-structure]
 category: [algorithm]
