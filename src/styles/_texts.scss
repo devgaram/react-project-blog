@@ -70,7 +70,7 @@ $block-spacing-big: 2rem !default;
     padding: 1.25em 1.5em;
     white-space: pre;
     word-wrap: normal;
-    margin: .5em 0;
+    margin: 1.5rem 0;
     overflow: auto;
     color: #ccc;
   }
@@ -88,6 +88,7 @@ $block-spacing-big: 2rem !default;
   }
   img {
     width: 100%;
+    margin: 2rem 0;
   }
 }
 
