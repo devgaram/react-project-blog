@@ -1,27 +1,28 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-//import { requestPosts } from 'store/modules/blog'
 import Post from 'components/blog/post';
-import hljs from 'highlight.js/lib/highlight';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
-
-const PostContainer = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const post = useSelector(state => {
-    return state.blog.get('posts').filter(p => p.id === id)
-  }, shallowEqual)
-
-  useEffect(() => {
-    //dispatch(requestPosts())
-  }, []);
-
-  const createMarkUp = () => {
-    if (post.get(0)) return {__html: `${post.get(0).body}`};
+const GET_POST = gql`
+  query getPost($oid: GitObjectID!) {
+    repository(name: "TIL", owner: "devgaram") {
+      post: object(oid: $oid) {
+        ... on Blob{
+          text
+        }
+      }
+    }
   }
+`;
+const PostContainer = () => {
+  const { category, post } = useParams();
+  const { loading, data } = useQuery(GET_POST, {
+    variables: { oid: `${post}`}
+  });
+  console.log(post, data);
   return (
-    <Post post={post.get(0)} createMarkUp={createMarkUp}/>
+    <Post category={category} post={data && data.repository.post}/>
   )
 }
 

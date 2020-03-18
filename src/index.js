@@ -12,13 +12,23 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
-
+import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemory';
 const token = 'e32b5cb70b518eed189e7624415a5f9e5bfc72b2';
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: {
+    __schema: {
+      types: [],
+    },
+  },
+});
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   headers: {
     'Authorization': 'bearer ' + token
-  }
+  },
+  cache: new InMemoryCache({
+    fragmentMatcher,
+  }),
 });
 const sagaMiddleware = createSagaMiddleware();
 

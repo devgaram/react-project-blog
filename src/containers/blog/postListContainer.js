@@ -12,6 +12,7 @@ const GET_POSTS_BY_CATEGORY = gql`
         ... on Tree {
           entries {
             name
+            oid
             content: object {
               ... on Blob {
                 text
@@ -29,15 +30,13 @@ const PostListContainer = () => {
   const { loading, data } = useQuery(GET_POSTS_BY_CATEGORY, {
     variables: { category: `master:${category}`}
   });
-  console.log(data);
-
   if (loading) return (
     <div style={{ textAlign: 'center', marginTop: '20px' }}><Spin size="large" tip="Loading..."/></div>
   );
 
   return (
     <>
-      <PostList posts={data && data.repository.posts.entries} />
+      <PostList category={category} posts={data && data.repository.posts.entries} />
     </>
   );
 };

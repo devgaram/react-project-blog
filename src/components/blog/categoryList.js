@@ -41,7 +41,7 @@ const CategoryListItem = styled.ul`
 
 const CategoryItem = styled.li`
   padding: 0.5rem 1rem;
-  border: 1px solid #eee;
+  border: 1px solid #e8e8e8;
   border-radius: 1rem;
   margin-right: 0.7rem;
   margin-bottom: 0.7rem;

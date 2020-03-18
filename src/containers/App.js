@@ -12,7 +12,7 @@ const App = ({ props }) => {
       <Switch>
         <Route path="/about" component={AboutContainer} />
         <Route path="/memo" component={MemoContainer} />
-        <Route path="/post/:id" component={PostContainer} />
+        <Route path="/:category/:post" component={PostContainer} />
         <Route path="/" component={BlogContainer} />
       </Switch>
     </LayoutContainer>
