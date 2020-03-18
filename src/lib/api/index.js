@@ -1,7 +1,2 @@
-import Blog from './blog'
-import Auth from './auth';
-
-export {
-  Blog,
-  Auth
-}
+export { default as Blog } from './blog';
+export { default as Auth } from './auth';

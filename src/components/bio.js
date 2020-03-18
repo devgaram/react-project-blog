@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader, Typography, Button } from 'antd';
+import { PageHeader, Button } from 'antd';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 

@@ -10,7 +10,16 @@ import 'styles/default.scss';
 import App from 'containers/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 
+const token = 'e32b5cb70b518eed189e7624415a5f9e5bfc72b2';
+const client = new ApolloClient({
+  uri: 'https://api.github.com/graphql',
+  headers: {
+    'Authorization': 'bearer ' + token
+  }
+});
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
@@ -23,11 +32,13 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 

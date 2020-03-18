@@ -1,114 +1,51 @@
-import { createAction, handleActions, combineActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 import { Map, List } from 'immutable';
 
-// 초기상태
 const defaultState = Map({
-  isFetching: false,
-  didInvalidate: false,
   pagination: 10,
   postCount: 0,
+  categories: List([]),
   posts: List([
     Map({
-      id: '',
-      filename: '',
-      title: '',
-      date: null,
-      tags: List([
-        Map({
-          name: ''
-        })
-      ]),
-      categories: List([
-        Map({
-          name: ''
-        })
-      ]),
-      body: '',
-      updatedAt: null
+      name: '',
+      html_url: ''
     })
   ])
 });
 
-/*********액션**********/
-// 동기 액션
+// 페이지네이션 액션 & 액션 생성자
+export const NEXT_PAGE = 'blog/NEXT_PAGE';
+export const nextPage = createAction(NEXT_PAGE);
+
+// 카테고리 액션 & 액션 생성자
+export const REQUEST_CATEGORIES = 'blog/REQUEST_CATEGORIES';
+export const RECEIVE_CATEGORIES = 'blog/RECEIVE_CATEGORIES';
+export const requestCategories = createAction(REQUEST_CATEGORIES);
+export const receiveCategories = createAction(RECEIVE_CATEGORIES);
+
+// 포스트 액션 & 액션 생성자
 export const REQUEST_POSTS = 'blog/REQUEST_POSTS';
 export const RECEIVE_POSTS = 'blog/RECEIVE_POSTS';
-export const NEXT_PAGE = 'blog/NEXT_PAGE';
-
-// 비동기 액션
-export const FETCH_POSTS_REQUEST = 'blog/FETCH_POSTS_REQUEST';
-export const FETCH_POSTS_FAILURE = 'blog/FETCH_POSTS_FAILURE';
-export const FETCH_POSTS_SUCCESS = 'blog/FETCH_POSTS_SUCCESS';
-/***********************/
-
-/*********액션 생성자**********/
-// 동기 액션 생성자
-/**
- * 1) requestPosts
- * {
- *    type: 'REQUEST_POSTS',
- *    payload: {
- *      blog
- *    }
- * }
- * 
- * 2) receivePosts
- * {
- *    type: 'REQUEST_POSTS',
- *    payload: {
- *      blog,
- *      posts: json.data.children.map(child => child.data),
- *      receivedAt: Data.now()
- *    }
- * }
- */
 export const requestPosts = createAction(REQUEST_POSTS);
 export const receivePosts = createAction(RECEIVE_POSTS);
-export const nextPage = createAction(NEXT_PAGE);
-// 비동기 액션 생성자
-/**
- * 1) fetchPostsRequest
- * {
- *    type: 'FETCH_POSTS_REQUEST',
- *    payload: {
- *      
- *    }
- * }
- * 
- * 2) fetchPostsFailure
- * {
- *    type: 'FETCH_POSTS_FAILURE',
- *    payload: {
- *      error: 'Oops' 
- *    }
- * }
- * 3) fetchPostsSuccess
- * {
- *    type: 'FETCH_POSTS_SUCCESS',
- *    payload: {
- *      response: {....}
- *    }
- * }
- */
-export const fetchPostsRequest = createAction(FETCH_POSTS_REQUEST);
-export const fetchPostsFailure = createAction(FETCH_POSTS_FAILURE);
-export const fetchPostsSuccess = createAction(FETCH_POSTS_SUCCESS);
-/***********************/
 
-// 리듀서
 export default handleActions(
   {
-    [REQUEST_POSTS]: (state, action) => {
-      return state.set('isFetching', true);
-    },
-    [RECEIVE_POSTS]: (state, action) => {
-      const posts = List(action.payload);
-      const count = posts.count();
-      return state.set('posts', List(action.payload)).set('postCount', count);
-    },
     [NEXT_PAGE]: (state, action) => {
       return state.set('pagination', state.get('pagination') + 10);
-    }
+    },
+    [REQUEST_CATEGORIES]: (state, action) => {
+      return state;
+    },
+    [RECEIVE_CATEGORIES]: (state, action) => {
+      return state.set('categories', List(action.payload));
+    },
+    [REQUEST_POSTS]: (state, action) => {
+      return state;
+    },
+    [RECEIVE_POSTS]: (state, action) => {
+      return state.set('posts', List(action.payload));
+    },
   },
   defaultState
 );

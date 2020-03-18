@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useReducer } from 'react';
 import Bio from 'containers/bioContainer';
-import Memo from 'components/memo';
-import MemoList from 'components/memolist';
+import Memo from 'components/memo/memo';
+import MemoList from 'components/memo/memolist';
 
 const MemoContainer = () => {
 
