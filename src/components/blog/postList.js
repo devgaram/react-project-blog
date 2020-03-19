@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Icon } from "antd";
+import { Card } from "antd";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import marked from "marked";
+import ConvertHTML from "components/base/convertHTML";
 
 const PostList = ({ category, posts }) => {
   return (
@@ -12,16 +12,11 @@ const PostList = ({ category, posts }) => {
           posts.map((post, index) => (
             <Link to={`${category}/${post.oid}`} key={index}>
               <CardItem hoverable actions={[<div>더보기</div>]}>
-                <div
-                  className="blog-content"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      post.content.text &&
-                      marked(post.content.text)
-                        .replace(/<hr>((.|\n)*)<hr>/gi, "")
-                        .substr(0, 700)
-                  }}
-                ></div>
+                <ConvertHTML
+                  html={post.content.text}
+                  className={`blog-content`}
+                  maxLength={700}
+                />
               </CardItem>
             </Link>
           ))}

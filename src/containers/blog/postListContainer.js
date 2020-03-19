@@ -1,6 +1,6 @@
 import React from "react";
-import { Spin } from "antd";
 import PostList from "components/blog/postList";
+import Loading from "components/base/loading";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_POSTS_BY_CATEGORY } from "./queries";
@@ -12,12 +12,7 @@ const PostListContainer = () => {
   });
   const posts = data && data.repository.posts.entries;
 
-  if (loading)
-    return (
-      <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <Spin size="large" tip="Loading..." />
-      </div>
-    );
+  if (loading) return <Loading />;
 
   return (
     <>
