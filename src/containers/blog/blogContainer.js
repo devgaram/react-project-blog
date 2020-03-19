@@ -14,10 +14,10 @@ const BlogContainer = () => {
       <Bio bioTitle="라미의 블로그" />
       <CategoryListContainer />
       <Switch>
-        <Route exact path={path}>
+        <Route path={`/:category`}>
           <PostListContainer />
         </Route>
-        <Route path={`/:category`}>
+        <Route exact path={path}>
           <PostListContainer />
         </Route>
       </Switch>
