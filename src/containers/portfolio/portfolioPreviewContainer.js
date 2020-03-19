@@ -1,17 +1,13 @@
-import React from 'react';
-import Portfolio from 'components/portfolio';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import Portfolio from "components/portfolio";
 
 const PortfolioContainer = ({ match }) => {
-  const history = useHistory();
   console.log(match);
-  const handleMovePage = event => {
-  };
+  const handleMovePage = event => {};
 
   return (
     <>
-      <Portfolio 
-        handleMovePage={handleMovePage}/>
+      <Portfolio handleMovePage={handleMovePage} />
     </>
   );
 };

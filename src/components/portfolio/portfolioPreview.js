@@ -1,14 +1,13 @@
-import React from 'react';
-import { Button } from 'antd';
-import { } from 'react-router-dom';
+import React from "react";
+import { Button } from "antd";
+import {} from "react-router-dom";
 
-const PortfolioPreview = ({
-}) => {
+const PortfolioPreview = ({}) => {
   return (
-    <> 
+    <>
       <Button>ppre</Button>
     </>
   );
-}
+};
 
 export default PortfolioPreview;

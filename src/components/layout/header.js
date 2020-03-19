@@ -1,35 +1,37 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Layout, Select } from 'antd';
+import React from "react";
+import styled from "styled-components";
+import { Layout, Select } from "antd";
 
-const { Header } = Layout;
+const AHeader = Layout.Header;
 const { Option } = Select;
 
-const HeaderComponent = ({ menuKey, handleChange }) => {
+const Header = ({ menuKey, handleChange }) => {
   return (
     <>
-      <Header
+      <AHeader
         className="header"
         style={{
-          textAlign: 'right',
-          padding: '0 1rem'
-        }}>
+          textAlign: "right",
+          padding: "0 1rem"
+        }}
+      >
         <MenuSelect
           defaultValue={menuKey}
           value={menuKey}
-          onChange={handleChange}>
+          onChange={handleChange}
+        >
           <Option value="blog">BLOG</Option>
           <Option value="memo">MEMO</Option>
           <Option value="about">ABOUT</Option>
         </MenuSelect>
-      </Header>
+      </AHeader>
     </>
   );
-}
+};
 
-const MenuSelect = styled(Select)`  
+const MenuSelect = styled(Select)`
   .ant-select-selection {
-    background: #BC61F4;
+    background: #bc61f4;
     color: #fff;
     width: 8rem;
     border: 1px solid #fff;
@@ -37,7 +39,7 @@ const MenuSelect = styled(Select)`
   }
   .ant-select-arrow {
     color: #fff;
-  }  
+  }
 `;
 
-export default HeaderComponent;
+export default Header;

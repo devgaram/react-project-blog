@@ -1,39 +1,39 @@
-import React from 'react';
-import { List, Card, Typography, Divider } from 'antd';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { List, Card, Typography, Divider } from "antd";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const { Text } = Typography;
+
 const CategoryList = ({ categories }) => {
   return (
     <>
-      <div style={{ marginTop: '3rem' }}>
-        <Text strong style={{ fontSize: '18px' }}>
-          <span role='img' aria-label='category'>🎉</span> 카테고리
+      <div style={{ marginTop: "3rem" }}>
+        <Text strong style={{ fontSize: "18px" }}>
+          <span role="img" aria-label="category">
+            🎉
+          </span>{" "}
+          카테고리
         </Text>
       </div>
-      <CategoryContainer>
-        <CategoryListItem>
-          { categories && categories.map(category => {
-              return (
-                <Link to={`${category.name}`} key={category.name}>
-                  <CategoryItem>{ category.name }</CategoryItem>
-                </Link>
-              ) 
-              
-            })}
-        </CategoryListItem>
-      </CategoryContainer>
+      <CategoryListItem>
+        {categories &&
+          categories.map(category => {
+            return (
+              <Link to={`${category.name}`} key={category.name}>
+                <CategoryItem>{category.name}</CategoryItem>
+              </Link>
+            );
+          })}
+      </CategoryListItem>
     </>
-  )
-}
+  );
+};
 
-const CategoryContainer = styled.div`
-`;
 const CategoryListItem = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 0;  
+  padding: 0;
   display: flex;
   margin-top: 1.5rem;
   flex-wrap: wrap;

@@ -1,14 +1,13 @@
-import React from 'react';
-import { Button } from 'antd';
-import { } from 'react-router-dom';
+import React from "react";
+import { Button } from "antd";
+import {} from "react-router-dom";
 
-const About = ({
-}) => {
+const About = ({}) => {
   return (
-    <> 
+    <>
       <Button>EDIT</Button>
     </>
   );
-}
+};
 
 export default About;
