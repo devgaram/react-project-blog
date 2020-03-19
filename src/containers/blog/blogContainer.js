@@ -8,7 +8,6 @@ import PostListContainer from "./postListContainer";
 const BlogContainer = () => {
   const location = useLocation();
   const path = location.pathname;
-
   return (
     <>
       <Bio bioTitle="라미의 블로그" />

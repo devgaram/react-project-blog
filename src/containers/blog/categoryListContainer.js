@@ -3,8 +3,12 @@ import { message, Button } from "antd";
 import CategoryList from "components/blog/categoryList";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_POST_CATEGORIES } from "./queries";
+import { useLocation } from "react-router-dom";
 
-const PostListContainer = () => {
+const CategoryListContainer = () => {
+  const location = useLocation();
+  let selectedCategory = location.pathname.split("/")[1];
+  selectedCategory = !selectedCategory ? "Algorithm" : selectedCategory;
   const { error, data } = useQuery(GET_POST_CATEGORIES);
   const categories = data && data.repository.categories.entries;
 
@@ -12,8 +16,11 @@ const PostListContainer = () => {
 
   return (
     <>
-      <CategoryList categories={categories} />
+      <CategoryList
+        selectedCategory={selectedCategory}
+        categories={categories}
+      />
     </>
   );
 };
-export default PostListContainer;
+export default CategoryListContainer;

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const { Text } = Typography;
 
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, selectedCategory }) => {
   return (
     <>
       <div style={{ marginTop: "3rem" }}>
@@ -21,7 +21,13 @@ const CategoryList = ({ categories }) => {
           categories.map(category => {
             return (
               <Link to={`${category.name}`} key={category.name}>
-                <CategoryItem>{category.name}</CategoryItem>
+                <CategoryItem
+                  className={
+                    selectedCategory === category.name ? "selectItem" : ""
+                  }
+                >
+                  {category.name}
+                </CategoryItem>
               </Link>
             );
           })}
