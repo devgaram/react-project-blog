@@ -13,7 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemory';
-const token = 'e32b5cb70b518eed189e7624415a5f9e5bfc72b2';
+
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
     __schema: {
@@ -21,10 +21,11 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
     },
   },
 });
+
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   headers: {
-    'Authorization': 'bearer ' + token
+    'Authorization': 'bearer ' + process.env.REACT_APP_GITHUB_TOKEN
   },
   cache: new InMemoryCache({
     fragmentMatcher,
