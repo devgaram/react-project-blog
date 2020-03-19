@@ -5,7 +5,7 @@ const Utteranc = () => {
     const script = document.createElement("script");
     const attr = {
       src: "https://utteranc.es/client.js",
-      repo: "devgaram/react-project-blog",
+      repo: "devgaram/blog-comments",
       "issue-term": "pathname",
       theme: "github-light",
       crossorigin: "anonymous",
