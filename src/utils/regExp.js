@@ -9,3 +9,7 @@ export const getDateRegExp = content => {
 export const getCategoryRegExp = content => {
   return /(?<=[Cc][Aa][Tt][Ee][Gg][Oo][Rr].?:.).*/gi.exec(content);
 };
+
+export const removeExtension = filename => {
+  return /.+(?=\.)/g.exec(filename);
+};

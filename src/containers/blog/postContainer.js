@@ -6,9 +6,9 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_POST } from "./queries";
 
 const PostContainer = () => {
-  const { post } = useParams();
+  const { category, post } = useParams();
   const { loading, data } = useQuery(GET_POST, {
-    variables: { oid: `${post}` }
+    variables: { path: `master:${category}/${post}.md` }
   });
 
   if (loading) return <Loading />;

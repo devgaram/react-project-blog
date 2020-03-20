@@ -20,15 +20,17 @@ const CategoryList = ({ categories, selectedCategory }) => {
         {categories &&
           categories.map(category => {
             return (
-              <Link to={`${category.name}`} key={category.name}>
-                <CategoryItem
-                  className={
-                    selectedCategory === category.name ? "selectItem" : ""
-                  }
-                >
-                  {category.name}
-                </CategoryItem>
-              </Link>
+              category.type === "tree" && (
+                <Link to={`${category.name}`} key={category.name}>
+                  <CategoryItem
+                    className={
+                      selectedCategory === category.name ? "selectItem" : ""
+                    }
+                  >
+                    {category.name}
+                  </CategoryItem>
+                </Link>
+              )
             );
           })}
       </CategoryListItem>

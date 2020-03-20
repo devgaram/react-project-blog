@@ -8,6 +8,7 @@ export const GET_POST_CATEGORIES = gql`
         ... on Tree {
           entries {
             name
+            type
           }
         }
       }
@@ -24,6 +25,7 @@ export const GET_POSTS_BY_CATEGORY = gql`
           entries {
             name
             oid
+            type
             content: object {
               ... on Blob {
                 text
@@ -38,9 +40,9 @@ export const GET_POSTS_BY_CATEGORY = gql`
 
 // 파일 내용 가져오기
 export const GET_POST = gql`
-  query getPost($oid: GitObjectID!) {
+  query getPost($path: String) {
     repository(name: "TIL", owner: "devgaram") {
-      post: object(oid: $oid) {
+      post: object(expression: $path) {
         ... on Blob {
           text
         }
