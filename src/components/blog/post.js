@@ -1,12 +1,17 @@
 import React from "react";
-import { Divider, Tag } from "antd";
+import { Divider, Tag, Typography } from "antd";
 import ConvertHTML from "components/base/convertHTML";
 import Utteranc from "components/base/utteranc";
+import { getTitleRegExp, getDateRegExp, getCategoryRegExp } from "utils/regExp";
 
-const Post = ({ category, post }) => {
+const Post = ({ post }) => {
   return (
     <>
-      <Tag color="purple"># {category}</Tag>
+      <Typography.Title level={3}>{getTitleRegExp(post)}</Typography.Title>
+      <Typography.Text className="text-grey right-space-sm">
+        {getDateRegExp(post)}
+      </Typography.Text>
+      <Tag color="purple"># {getCategoryRegExp(post)}</Tag>
       <Divider />
       <ConvertHTML html={post} className={`blog-content`} />
       <Utteranc />

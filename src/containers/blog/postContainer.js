@@ -6,7 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_POST } from "./queries";
 
 const PostContainer = () => {
-  const { category, post } = useParams();
+  const { post } = useParams();
   const { loading, data } = useQuery(GET_POST, {
     variables: { oid: `${post}` }
   });
@@ -16,7 +16,7 @@ const PostContainer = () => {
   let postData = data && data.repository.post;
   postData = postData ? postData.text : "";
 
-  return <Post category={category} post={postData} />;
+  return <Post post={postData} />;
 };
 
 export default PostContainer;

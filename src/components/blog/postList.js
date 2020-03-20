@@ -1,8 +1,9 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Typography } from "antd";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ConvertHTML from "components/base/convertHTML";
+import { getTitleRegExp, getDateRegExp } from "utils/regExp";
 
 const PostList = ({ category, posts }) => {
   return (
@@ -11,11 +12,24 @@ const PostList = ({ category, posts }) => {
         {posts &&
           posts.map((post, index) => (
             <Link to={`${category}/${post.oid}`} key={index}>
-              <CardItem hoverable actions={[<div>더보기</div>]}>
+              <CardItem
+                title={
+                  <>
+                    <Typography.Text type="secondary">
+                      {getTitleRegExp(post.content.text)}
+                    </Typography.Text>
+                    <Typography.Text code className="text-grey left-space-sm">
+                      {getDateRegExp(post.content.text)}
+                    </Typography.Text>
+                  </>
+                }
+                hoverable
+                actions={[<div>더보기</div>]}
+              >
                 <ConvertHTML
                   html={post.content.text}
                   className={`blog-content`}
-                  maxLength={700}
+                  maxLength={400}
                 />
               </CardItem>
             </Link>

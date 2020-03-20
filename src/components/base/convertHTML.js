@@ -5,11 +5,7 @@ import createDOMPurify from "dompurify";
 const ConvertHTML = ({ html, className, maxLength }) => {
   const DOMPurify = createDOMPurify(window);
   const convertedHTML = html
-    ? DOMPurify.sanitize(
-        marked(html)
-          .replace(/<hr>((.|\n)*)<hr>/gi, "")
-          .substr(0, maxLength)
-      )
+    ? DOMPurify.sanitize(marked(html).substr(0, maxLength))
     : "";
 
   return (
