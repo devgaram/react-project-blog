@@ -1,12 +1,12 @@
 $text-grey: #7a7a7a;
-$text-primary: #BC61F4;
+$text-primary: #bc61f4;
 $text-purple: #b86bff;
 
 $is-2-5: 2.5rem;
 $is-2: 2rem;
 $is-1-5: 1.5rem;
 $is-1-25: 1.25rem;
-$is-0-8: 0.80rem;
+$is-0-8: 0.8rem;
 $text-bold: 600;
 $space-1: 1rem;
 $block-spacing-big: 2rem !default;
@@ -93,6 +93,12 @@ $block-spacing-big: 2rem !default;
   img {
     width: 100%;
     margin: 2rem 0;
+  }
+  *:not(pre) > code {
+    background: #ededeb;
+    color: #eb5757;
+    padding: 2px 4px;
+    border-radius: 4px;
   }
 }
 

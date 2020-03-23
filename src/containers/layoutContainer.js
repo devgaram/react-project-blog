@@ -14,7 +14,7 @@ const LayoutContainer = ({ children }) => {
   // 헤더 메뉴 클릭 시 페이지 이동
   const handleChange = value => {
     value = value === "blog" ? "" : value;
-    history.push(`/${value}`);
+    // history.push(`/${value}`);
   };
 
   return (

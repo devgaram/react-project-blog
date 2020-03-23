@@ -21,7 +21,7 @@ const CategoryList = ({ categories, selectedCategory }) => {
           categories.map(category => {
             return (
               category.type === "tree" && (
-                <Link to={`${category.name}`} key={category.name}>
+                <Link to={`${encodeURI(category.name)}`} key={category.name}>
                   <CategoryItem
                     className={
                       selectedCategory === category.name ? "selectItem" : ""

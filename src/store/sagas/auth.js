@@ -1,5 +1,5 @@
 import { take, call, put, fork, takeEvery } from "redux-saga/effects";
-import { Auth } from "lib/api";
+import { Auth } from "api";
 import {
   REQUEST_LOGIN,
   REQUEST_LOGINCHECK,

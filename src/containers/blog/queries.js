@@ -44,6 +44,7 @@ export const GET_POST = gql`
     repository(name: "TIL", owner: "devgaram") {
       post: object(expression: $path) {
         ... on Blob {
+          oid
           text
         }
       }
