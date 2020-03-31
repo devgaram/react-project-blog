@@ -20,9 +20,9 @@ export const GET_POST_CATEGORIES = gql`
 export const GET_POSTS_BY_CATEGORY = gql`
   query getPosts($category: String) {
     repository(name: "TIL", owner: "devgaram") {
-      posts: object(expression: $category) {
+      category: object(expression: $category) {
         ... on Tree {
-          entries {
+          posts: entries {
             name
             oid
             type
