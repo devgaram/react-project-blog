@@ -3,29 +3,27 @@ import { Modal, Form, Button, Input, Icon } from "antd";
 import PropTypes from "prop-types";
 
 const Login = ({
-  visible,
-  handleLogin,
-  onCancel,
-  userId,
-  password,
-  isFetching,
-  handleChangeUserId,
-  handleChangePassword,
+  isVisible,
+  hideModal,
   getFieldDecorator,
   useridError,
-  passwordError
+  passwordError,
+  handleChangeUserId,
+  handleChangePassword,
+  userid,
+  password,
+  handleLogin,
+  isFetching
 }) => {
-  const disabled = userId === "" || password === "" ? "disabled" : "";
-
   return (
     <>
       <Modal
         title="Sign in"
-        visible={visible}
+        visible={isVisible}
         onOk={handleLogin}
-        onCancel={onCancel}
+        onCancel={hideModal}
         footer={[
-          <Button key="back" onClick={onCancel}>
+          <Button key="back" onClick={hideModal}>
             Close
           </Button>,
           <Button
@@ -33,7 +31,7 @@ const Login = ({
             key="submit"
             type="primary"
             onClick={handleLogin}
-            disabled={disabled}
+            disabled={null}
           >
             Log in
           </Button>
@@ -53,7 +51,7 @@ const Login = ({
                   <Icon type="user" style={{ color: "rgba(0, 0, 0, .25)" }} />
                 }
                 placeholder="UserId"
-                setfieldsvalue={userId}
+                setfieldsvalue={userid}
                 onChange={handleChangeUserId}
               />
             )}

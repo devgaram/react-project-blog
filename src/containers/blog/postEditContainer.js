@@ -5,8 +5,12 @@ import PostEdit from "components/blog/postEdit";
 import Loading from "components/base/loading";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_POST } from "./queries";
-import { initPost, changePostContent, requestUpdateFile } from "store/actions";
-import { getPostContent } from "store/reducers/blog.reducer";
+import {
+  initPost,
+  changePostContent,
+  requestUpdateFile
+} from "store/actions/blog";
+import { getPostContent } from "store/reducers/blog";
 
 const PostEditContainer = () => {
   const dispatch = useDispatch();

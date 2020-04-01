@@ -13,7 +13,7 @@ import {
   REQUEST_DELETE_FILE,
   FAILURE_DELETE_FILE,
   SUCCESS_DELETE_FILE
-} from "store/actions";
+} from "store/actions/blog";
 
 const defaultState = Map({
   post: Map({

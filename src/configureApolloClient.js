@@ -1,8 +1,7 @@
-import ApolloClient from "apollo-boost";
-import {
+import ApolloClient, {
   IntrospectionFragmentMatcher,
   InMemoryCache
-} from "apollo-cache-inmemory";
+} from "apollo-boost";
 
 export default function configureApolloClient() {
   // Github Graphql API: TIL 레파지토리 데이터 접근
@@ -12,7 +11,6 @@ export default function configureApolloClient() {
       Authorization: `bearer ${process.env.REACT_APP_GITHUB_TOKEN}`
     },
     cache: new InMemoryCache({
-      // unions/interfaces 작동 위해 필요
       fragmentMatcher: new IntrospectionFragmentMatcher({
         introspectionQueryResultData: {
           __schema: {

@@ -1,5 +1,4 @@
 import { createAction } from "redux-actions";
-
 /*
    블로그 관련 액션
 */
@@ -14,9 +13,9 @@ export const SUCCESS_CREATE_FILE = "blog/SUCCESS_CREATE_FILE";
 export const REQUEST_DELETE_FILE = "blog/REQUEST_DELETE_FILE";
 export const FAILURE_DELETE_FILE = "blog/FAILURE_DELETE_FILE";
 export const SUCCESS_DELETE_FILE = "blog/SUCCESS_DELETE_FILE";
-/*
-   블로그 관련 액션 생성자
-*/
+/**
+ * 블로그 관련 액션 생성자
+ */
 export const initPost = createAction(INIT_POST);
 export const changePostContent = createAction(CHANGE_POST_CONTENT);
 export const requestUpdateFile = createAction(REQUEST_UPDATE_FILE);

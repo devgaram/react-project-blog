@@ -1,35 +1,75 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import {
-  loginModalVisible,
-  requestLoginCheck,
-  requestLogout
-} from "store/modules/auth";
+import React, { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { Form, message } from "antd";
 import Bio from "components/bio";
-import LoginContainer from "containers/loginContainer";
+import Login from "components/login";
+import { changeInput, requestSignIn } from "store/actions/auth";
 
-const BioContainer = ({ bioTitle }) => {
+const BioContainer = ({ form, bioTitle }) => {
   const dispatch = useDispatch();
-  const logged = useSelector(state => state.auth.get("logged"), shallowEqual);
-
-  useEffect(() => {
-    dispatch(requestLoginCheck());
-  }, [dispatch]);
+  const [isVisible, setVisible] = useState(false);
+  const { isFieldTouched, getFieldError, getFieldDecorator } = form;
+  const useridError = isFieldTouched("userid") && getFieldError("userid");
+  const passwordError = isFieldTouched("password") && getFieldError("password");
+  const { userid, password, isFetching, isFinishing, logged } = useSelector(
+    state => ({
+      userid: state.auth.get("userid"),
+      password: state.auth.get("password"),
+      isFetching: state.auth.get("isFetching"),
+      isFinishing: state.auth.get("isFinishing"),
+      logged: state.auth.get("logged")
+    }),
+    shallowEqual
+  );
 
   const showModal = () => {
-    if (!logged) dispatch(loginModalVisible(true));
-    // 로그아웃 처리
-    else {
-      dispatch(requestLogout());
-    }
+    setVisible(true);
   };
+
+  const hideModal = () => {
+    setVisible(false);
+  };
+
+  const handleChangeUserId = useCallback(
+    e => dispatch(changeInput({ userid: e.target.value })),
+    []
+  );
+
+  const handleChangePassword = useCallback(
+    e => dispatch(changeInput({ password: e.target.value })),
+    []
+  );
+
+  const handleLogin = e => {
+    dispatch(requestSignIn({ userid, password }));
+  };
+
+  useEffect(() => {
+    if (isFinishing && !logged) message.warning("로그인에 실패했습니다.");
+    else if (isFinishing && logged) {
+      message.success("로그인에 성공 했습니다.");
+      hideModal();
+    }
+  }, [isFinishing]);
 
   return (
     <>
       <Bio bioTitle={bioTitle} showModal={showModal} logged={logged} />
-      <LoginContainer />
+      <Login
+        isVisible={isVisible}
+        hideModal={hideModal}
+        getFieldDecorator={getFieldDecorator}
+        useridError={useridError}
+        passwordError={passwordError}
+        handleChangeUserId={handleChangeUserId}
+        handleChangePassword={handleChangePassword}
+        userid={userid}
+        password={password}
+        handleLogin={handleLogin}
+        isFetching={isFetching}
+      />
     </>
   );
 };
 
-export default BioContainer;
+export default Form.create({ name: "form_login" })(BioContainer);

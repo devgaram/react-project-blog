@@ -1,22 +1,18 @@
 import axios from "axios";
 
-const login = (userid, password) => {
-  //const uri = `${process.env.API_URL}/auth/login`;
-  console.log(process.env.API_URL);
-  const uri = `http://192.168.99.100:4000/api/auth/login`;
-  return axios
-    .post(uri, { userid, password })
-    .then(response => {
-      return {
-        result: response.data,
-        error: null
-      };
+const instance = axios.create({
+  baseURL: "ttp://express-project-blog/api"
+});
+
+const signIn = ({ userid, password }) => {
+  return instance
+    .post("/auth/signin", {
+      userid,
+      password
     })
+    .then(response => response)
     .catch(error => {
-      return {
-        result: null,
-        error
-      };
+      return error;
     });
 };
 
@@ -56,7 +52,7 @@ const logout = token => {
 };
 
 const Auth = {
-  login,
+  signIn,
   loginCheck,
   logout
 };
